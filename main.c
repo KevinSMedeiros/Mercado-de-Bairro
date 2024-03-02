@@ -89,6 +89,10 @@ int main()
 
                 break;
 
+                case 4:
+
+                break;
+
                 case 9:
                     printf("\nPrograma finalizado.\n");
                     //return 0;
