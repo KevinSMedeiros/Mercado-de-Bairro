@@ -52,11 +52,8 @@ int gravarProdutoCSV(PRODUTO p)
     }
 
     fseek(csv, 0, SEEK_END); // arquivo ja existe, insere apenas o dado no final do arquivo
-
-    fprintf(csv, "%d;%s;%s;%.2f;%02d/%02d/%04d;%d\n",
-            p.id, p.setor, p.nome, p.preco,
-            p.dataValidade.dia, p.dataValidade.mes, p.dataValidade.ano,
-            p.estoque);
+    
+    fprintf(csv, "%d;%s;%s;%.2f;%02d/%02d/%04d;%d\n", p.id, p.setor, p.nome, p.preco, p.dataValidade.dia, p.dataValidade.mes, p.dataValidade.ano, p.estoque);
 
     fflush(csv);
     fclose(csv);
