@@ -12,7 +12,7 @@ int main()
 {
     int escolhaMenu;
 
-    printf("\n###### MENU DO MERCADINHO ######\n\n1. Venda\n2. Clientes\n3. Produtos\n\n9. Sair\n");
+    printf("\n#### MENU DO MERCADO DE BAIRRO ####\n\n1. Venda\n2. Clientes\n3. Produtos\n\n9. Sair\n");
     scanf("%d", &escolhaMenu);
     switch (escolhaMenu)
     {
