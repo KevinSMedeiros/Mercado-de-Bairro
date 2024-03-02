@@ -10,9 +10,10 @@
 
 int main()
 {
+
     int escolhaMenu;
 
-    printf("\n#### MENU DO MERCADO DE BAIRRO ####\n\n1. Venda\n2. Clientes\n3. Produtos\n\n9. Sair\n");
+    printf("\n###### MENU DO MERCADINHO ######\n\n1. Venda\n2. Clientes\n3. Produtos\n\n9. Sair\n");
     scanf("%d", &escolhaMenu);
     switch (escolhaMenu)
     {
@@ -31,7 +32,7 @@ int main()
                 break;
 
                 case 9:
-                    printf("\nPrograma finalizado.\n");
+                    printf("\nprograma finalizado.\n");
                     //return 0;
                 break;
             }
@@ -65,7 +66,7 @@ int main()
                 break;
 
                 case 9:
-                    printf("\nPrograma finalizado.\n");
+                    printf("\nprograma finalizado.\n");
                     //return 0;
                 break;
             }
@@ -78,7 +79,25 @@ int main()
             switch (escolhaMenu)
             {
                 case 1:
+                    PRODUTO novoProduto;
 
+                    novoProduto.id = obterProximoIdProduto();
+
+                    printf("digite os dados do produto que deseja adicionar:\n");
+                    printf("setor: ");
+                    scanf("%s", novoProduto.setor);
+                    printf("nome: ");
+                    scanf("%s", novoProduto.nome);
+                    printf("preco: ");
+                    scanf("%f", &novoProduto.preco);
+                    printf("data de validade (digite no formato 'DD MM AAAA'): ");
+                    scanf("%d %d %d", &novoProduto.dataValidade.dia, &novoProduto.dataValidade.mes, &novoProduto.dataValidade.ano);
+                    printf("estoque: ");
+                    scanf("%d", &novoProduto.estoque);
+
+                    gravarProdutoCSV(novoProduto);
+
+                    printf("\no produto foi adicionado.\n");
                 break;
 
                 case 2:
@@ -89,12 +108,8 @@ int main()
 
                 break;
 
-                case 4:
-
-                break;
-
                 case 9:
-                    printf("\nPrograma finalizado.\n");
+                    printf("\nprograma finalizado.\n");
                     //return 0;
                 break;
             }
