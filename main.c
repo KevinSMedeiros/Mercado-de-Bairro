@@ -42,14 +42,14 @@ int main()
         break;
 
         case 2:
-            printf("\n###### MENU DE CLIENTES ######\n\n1. adastrar novo cliente\n2. atualizar pontuação\n3. Atualizar cliente\n4. Listar clientes entre 18 e 25\n5. Listar clientes acima de 1000 pontos\n\n9. Sair\n");
+            printf("\n###### MENU DE CLIENTES ######\n\n1. cadastrar novo cliente\n2. atualizar pontuação\n3. Atualizar cliente\n4. Listar clientes entre 18 e 25\n5. Listar clientes acima de 1000 pontos\n\n9. Sair\n");
             scanf("%d", &escolhaMenu);
 
             switch (escolhaMenu)
             {
                 case 1:
 
-                    printf("Digite os dados do cliente que deseja cadastrar:\n");
+                    printf("digite os dados do cliente pra cadastrar:\n");
 
                     printf("\nCPF: ");
                     scanf("%s", novoCliente.CPF);
@@ -123,7 +123,7 @@ int main()
                 case 1:
                     novoProduto.id = obterProximoIdProduto();
 
-                    printf("digite os dados do produto que deseja adicionar:\n");
+                    printf("digite os dados do produto pra adicionar:\n");
 
                     printf("setor (permitidos: 'Higiene', 'Limpeza', 'Bebidas', 'Frios', 'Padaria' e 'Açougue': ");
                     scanf("%s", novoProduto.setor);
