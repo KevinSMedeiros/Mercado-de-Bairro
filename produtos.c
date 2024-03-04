@@ -237,28 +237,27 @@ PRODUTO retornarProdutoNaLinha(int indiceDesejado)
     exit(1);
 }
 
-int buscarProdutoPorID(int id)
-{
+int buscarProdutoPorID(int id) {
     int i;
     PRODUTO produto;
 
     int encontrou = 0;
 
-    for(i = 1; i <= quantidadeProdutosCSV() && encontrou == 0; i++) // vai varrendo todas as linhas do arquivo csv ate achar algum que combina com o id
+    for (i = 1; i <= quantidadeProdutosCSV() &&
+                encontrou == 0; i++) // vai varrendo todas as linhas do arquivo csv ate achar algum que combina com o id
     {
         produto = retornarProdutoNaLinha(i);
-        if(produto.id == id)
-        {
+        if (produto.id == id) {
             printf("\n%s", produto.id);
             encontrou = 1;
             return i;
             //retorna a linha do produto no arquivo csv
         }
     }
-    if(encontrou == 0)
-    {
+
         printf("nao existem produtos com esse id");
-    }
+        return 0;
+
 }
 
 int buscarProdutoPorNome(char nome[51])

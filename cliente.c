@@ -34,6 +34,49 @@ void cadastrarCliente(CLIENTE c)
     fflush(csv);
     fclose(csv);
 }
+void interfaceCadastrarCliente(CLIENTE novoCliente){
+    printf("digite os dados do cliente pra cadastrar:\n");
+
+    printf("\nCPF: ");
+    scanf("%s", novoCliente.CPF);
+
+    //fgets permite que as strings possuam espacos
+    //a funcao strcspn acha a quebra de linha e remove ela. se nao usar isso, cada informacao fica em uma linha diferente
+
+    printf("nome: ");
+    scanf(" ");
+    fgets(novoCliente.nome, sizeof(novoCliente.nome), stdin);
+    novoCliente.nome[strcspn(novoCliente.nome, "\n")] = '\0';
+
+    printf("data de nascimento (digite no formato 'DD MM AAAA'): ");
+    scanf("%d %d %d", &novoCliente.dataNascimento.dia, &novoCliente.dataNascimento.mes, &novoCliente.dataNascimento.ano);
+
+    printf("idade: ");
+    scanf("%d", &novoCliente.idade);
+
+    printf("endereco: ");
+    scanf(" ");
+    fgets(novoCliente.endereco, sizeof(novoCliente.endereco), stdin);
+    novoCliente.endereco[strcspn(novoCliente.endereco, "\n")] = '\0'; // Remove a quebra de linha
+
+    printf("cidade: ");
+    fgets(novoCliente.cidade, sizeof(novoCliente.cidade), stdin);
+    novoCliente.cidade[strcspn(novoCliente.cidade, "\n")] = '\0'; // Remove a quebra de linha
+
+    printf("estado (sigla de 2 letras: ");
+    fgets(novoCliente.estado, sizeof(novoCliente.estado), stdin);
+    novoCliente.estado[strcspn(novoCliente.estado, "\n")] = '\0'; // Remove a quebra de linha
+
+    printf("pontos: ");
+    scanf("%d", &novoCliente.pontos);
+
+    cadastrarCliente(novoCliente); // essa funcao pega tudo o que o usuario digitou no "novoCliente" como parâmetro joga pro arquivo csv
+
+    printf("\no cliente foi cadastrado.\n");
+
+    printf("\ndados do novo cliente:\n");
+    exibirCliente(novoCliente);
+}
 
 void modificarCliente()
 {
@@ -198,7 +241,7 @@ int buscarClientePorCPF(char cpf[15])
 
     int encontrou = 0;
 
-    for(i = 1; i <= quantidadeClientesCSV() && encontrou == 0; i++)
+    for(i = 1; i <= quantidadeClientesCSV(); i++)
     {
         cliente = retornarClienteNaLinha(i); // vai varrendo todas as linhas do arquivo csv ate achar algum que combina com o cpf
         if(strcmp(cliente.CPF, cpf) == 0) //strcmp serve pra comparar string, o valor 0 significa que sao iguais
@@ -209,10 +252,9 @@ int buscarClientePorCPF(char cpf[15])
             //retorna o indice do cliente do arquivo
         }
     }
-    if(encontrou == 0)
-    {
-        printf("nao tem clientes com esse cpf");
-    }
+        printf("nao tem cliente com esse cpf");
+        return 0;
+
 }
 
 int buscarClientePorNome(char nome[51])

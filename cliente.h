@@ -34,6 +34,7 @@ void exibirCliente(CLIENTE c);
  * @param c Cliente que será salvo no registro
 */
 void cadastrarCliente(CLIENTE c);
+void interfaceCadastrarCliente(CLIENTE novoCliente);
 
 CLIENTE retornarClienteNaLinha(int indiceDesejado); // recebe um inteiro que fala em qual linha buscar,
 //ai ele retorna com um valor de tipo CLIENTE com todas as informacoes na linha
