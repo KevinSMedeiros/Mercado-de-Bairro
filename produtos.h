@@ -20,6 +20,10 @@ typedef struct PRODUTO {
 */
 void exibirProduto(PRODUTO p);
 
+int buscarProdutoPorID(int id);
+
+int buscarProdutoPorNome(char nome[51]);
+
 /**
  * Gravando os dados de um produto no final do arquivo. Caso o arquivo
  * não exista, gera um novo arquivo com as colunas que são o cabeçalho
