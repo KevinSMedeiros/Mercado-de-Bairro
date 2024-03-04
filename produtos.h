@@ -50,4 +50,6 @@ PRODUTO retornarProdutoNaLinha(int i);
 
 void mostrarProdutosComEstoqueAbaixoDe5();
 
+void calcularEstoquePorSetor();
+
 #endif
