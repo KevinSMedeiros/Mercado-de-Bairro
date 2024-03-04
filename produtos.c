@@ -172,7 +172,7 @@ void modificarProduto()
     fprintf(temp, "%s", linha); // pega a linha do cabeçalho do arquivo original e joga no arquivo temporario
 
     while (fgets(linha, sizeof(linha), csv) != NULL)
-    { //os novos dados do cliente sao jogados no arquivo temporario
+    { //os novos dados do produto sao jogados no arquivo temporario
         if (contador == indiceProduto - 1) // -1 porque o indice comeca direto no 1, nao no 0
         {
             fprintf(temp, "%d;%s;%s;%.2f;%02d/%02d/%04d;%d\n", produto.id, produto.setor, produto.nome, produto.preco, produto.dataValidade.dia, produto.dataValidade.mes, produto.dataValidade.ano, produto.estoque);
