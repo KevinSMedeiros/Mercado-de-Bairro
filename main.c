@@ -12,9 +12,13 @@ int main()
 {
 
     int escolhaMenu;
-
+    int opcao;
     CLIENTE novoCliente;
     PRODUTO novoProduto;
+    char cpf[15];
+    char nome[51];
+
+    //o programa inteiro ta dividido nesse grande switch que serve como menu:
 
     printf("\n###### MENU DO MERCADINHO ######\n\n1. Venda\n2. Clientes\n3. Produtos\n\n9. Sair\n");
     scanf("%d", &escolhaMenu);
@@ -42,7 +46,7 @@ int main()
         break;
 
         case 2:
-            printf("\n###### MENU DE CLIENTES ######\n\n1. cadastrar novo cliente\n2. atualizar pontuação\n3. Atualizar cliente\n4. Listar clientes entre 18 e 25\n5. Listar clientes acima de 1000 pontos\n\n9. Sair\n");
+            printf("\n###### MENU DE CLIENTES ######\n\n1. cadastrar novo cliente\n2. modificar dados de cliente\n3. verificar o numero de clientes entre 18 e 25 anos\n4. listar clientes acima de 1000 pontos\n\n9. Sair\n");
             scanf("%d", &escolhaMenu);
 
             switch (escolhaMenu)
@@ -84,27 +88,23 @@ int main()
                     printf("pontos: ");
                     scanf("%d", &novoCliente.pontos);
 
-                    cadastrarCliente(novoCliente);
+                    cadastrarCliente(novoCliente); // essa funcao pega tudo o que o usuario digitou no "novoCliente" como parâmetro joga pro arquivo csv
 
                     printf("\no cliente foi cadastrado.\n");
 
-                    printf("\ndados do novo cliente:.\n");
+                    printf("\ndados do novo cliente:\n");
                     exibirCliente(novoCliente);
                 break;
 
                 case 2:
-
+                    modificarCliente();
                 break;
 
                 case 3:
-
-                break;
-
-                case 4:
                     printf("tem %d clientes entre 18 e 25", quantosClientesEntre18e25());
                 break;
 
-                case 5:
+                case 4:
                     mostrarNomesComMaisDeMilPontos();
                 break;
 
@@ -115,18 +115,45 @@ int main()
         break;
 
         case 3:
-            printf("\n###### MENU DE PRODUTOS ######\n\n1. Cadastrar novo produto\n2. Atualizar informações do produto\n3. Estoque por setor\n4. Produtos com estoque baixo\n\n9. Sair\n");
+            printf("\n###### MENU DE PRODUTOS ######\n\n1. Cadastrar novo produto\n2. Atualizar informações do produto\n3. listar produtos por setor\n4. estoque de cada setor\n5. Produtos com estoque baixo\n\n9. Sair\n");
             scanf("%d", &escolhaMenu);
 
             switch (escolhaMenu)
             {
                 case 1:
-                    novoProduto.id = obterProximoIdProduto();
+                    novoProduto.id = obterProximoIdProduto(); // essa funcao olha qual é o id do ultimo produto registrado. o proximo vai ser 1 a mais
 
-                    printf("digite os dados do produto pra adicionar:\n");
+                    printf("digite os dados do produto pra adicionar\n");
 
-                    printf("setor (permitidos: 'Higiene', 'Limpeza', 'Bebidas', 'Frios', 'Padaria' e 'Açougue': ");
-                    scanf("%s", novoProduto.setor);
+                    printf("\nsetor:\n1. Higiene\n2. Limpeza\n3. Bebidas\n4. Frios\n5. Padaria\n6. Acougue\n");
+                    // para o professor: o valor numerico foi pra facilitar a entrada, na struct os setores continuam como strings.
+                    scanf("%d",&opcao);
+                    switch (opcao) //nao da pra atribuir um valor direto na string, por isso o strcpy
+                    {
+                        case 1:
+                            strcpy(novoProduto.setor, "Higiene");
+                        break;
+
+                        case 2:
+                            strcpy(novoProduto.setor, "Limpeza");
+                        break;
+
+                        case 3:
+                            strcpy(novoProduto.setor, "Bebidas");
+                        break;
+
+                        case 4:
+                            strcpy(novoProduto.setor, "Frios");
+                        break;
+
+                        case 5:
+                            strcpy(novoProduto.setor, "Padaria");
+                        break;
+
+                        case 6:
+                            strcpy(novoProduto.setor, "Açougue");
+                        break;
+                    }
 
                     //fgets permite que a string nome possua espacos
                     //a funcao strcspn acha a quebra de linha e remove ela. se nao usar isso, cada informacao fica em uma linha diferente
@@ -146,19 +173,24 @@ int main()
                     scanf("%d", &novoProduto.estoque);
 
                     gravarProdutoCSV(novoProduto);
+                    // igual acontece pros clientes, essa funcao pega tudo oq o usuario digitou em novoProduto como parâmetro e joga no arquivo csv
 
                     printf("\no produto foi adicionado.\n");
                 break;
 
                 case 2:
-
+                    modificarProduto();
                 break;
 
                 case 3:
-                    calcularEstoquePorSetor();
+                    listarProdutosPorSetor();
                 break;
 
                 case 4:
+                    calcularEstoqueDeCadaSetor();
+                break;
+
+                case 5:
                     mostrarProdutosComEstoqueAbaixoDe5();
                 break;
 
