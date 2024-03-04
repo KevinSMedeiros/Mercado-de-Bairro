@@ -73,12 +73,12 @@ CLIENTE retornarClienteNaLinha(int indiceDesejado)
     exit(1);
 }
 
-void buscarClientePorCPF(char cpf[15])
+int buscarClientePorCPF(char cpf[15])
 {
     int i;
     CLIENTE cliente;
 
-    int contCPF = 0;
+    int encontrou = 0;
 
     for(i = 1; i <= quantidadeClientesCSV(); i++)
     {
@@ -86,37 +86,41 @@ void buscarClientePorCPF(char cpf[15])
         if(strcmp(cliente.CPF, cpf) == 0)
         {
             printf("\n%s", cliente.nome);
-            contCPF = contCPF + 1;
+            encontrou = 1;
+            return i;
+            //retorna a linha do cliente do arquivo
         }
     }
-    if(contCPF == 0)
+    if(encontrou == 0)
     {
         printf("nao tem clientes com esse cpf");
     }
 }
 
-void buscarClientePorNome(char nome[51])
+int buscarClientePorNome(char nome[51])
 {
     int i;
     CLIENTE cliente;
 
-    int contCPF = 0;
+    int encontrou = 0;
 
-    for(i = 1; i <= quantidadeClientesCSV(); i++)
+    for(i = 1; i <= quantidadeClientesCSV() && encontrou == 0; i++)
     {
         cliente = retornarClienteNaLinha(i);
         if(strcmp(cliente.nome, nome) == 0)
         {
             printf("\n%s", cliente.nome);
-            contCPF = contCPF + 1;
+            encontrou = 1;
+            return i;
+            ///retorna a linha do cliente do arquivo
         }
     }
-    if(contCPF == 0)
+    if(encontrou == 0)
     {
         printf("nao tem clientes com esse nome");
+        return 0;
     }
 }
-
 void mostrarNomesComMaisDeMilPontos()
 {
     int i;
