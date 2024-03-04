@@ -188,3 +188,52 @@ int quantidadeProdutosCSV()
         return 0;
     }
 }
+
+void calcularEstoquePorSetor()
+{
+    int estoqueHigiene = 0;
+    int estoqueLimpeza = 0;
+    int estoqueFrios = 0;
+    int estoqueAcougue = 0;
+    int estoqueBebidas = 0;
+    int estoquePadaria = 0;
+
+    PRODUTO produto;
+    int i;
+
+    for(i = 1; i <= quantidadeProdutosCSV(); i++)
+    {
+        produto = retornarProdutoNaLinha(i);
+        if(strcmp(produto.setor, "Higiene") == 0)
+        {
+            estoqueHigiene = estoqueHigiene + produto.estoque;
+        }
+        else if(strcmp(produto.setor, "Limpeza") == 0)
+        {
+            estoqueLimpeza = estoqueLimpeza + produto.estoque;
+        }
+        else if(strcmp(produto.setor, "Bebidas") == 0)
+        {
+            estoqueBebidas = estoqueBebidas + produto.estoque;
+        }
+        else if(strcmp(produto.setor, "Padaria") == 0)
+        {
+            estoquePadaria = estoquePadaria + produto.estoque;
+        }
+        else if(strcmp(produto.setor, "Frios") == 0)
+        {
+            estoqueFrios = estoqueFrios + produto.estoque;
+        }
+        else if(strcmp(produto.setor, "Açougue") == 0)
+        {
+            estoqueAcougue = estoqueAcougue + produto.estoque;
+        }
+    }
+
+    printf("\nEstoque de Higiene: %d", estoqueHigiene);
+    printf("\nEstoque de Limpeza: %d", estoqueLimpeza);
+    printf("\nEstoque de Bebidas: %d", estoqueBebidas);
+    printf("\nEstoque de Frios: %d", estoqueFrios);
+    printf("\nEstoque de Padaria: %d", estoquePadaria);
+    printf("\nEstoque de Açougue: %d", estoqueAcougue);
+}
