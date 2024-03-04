@@ -99,6 +99,54 @@ PRODUTO retornarProdutoNaLinha(int indiceDesejado)
     exit(1);
 }
 
+int buscarProdutoPorID(int id)
+{
+    int i;
+    PRODUTO produto;
+
+    int encontrou = 0;
+
+    for(i = 1; i <= quantidadeProdutosCSV(); i++)
+    {
+        produto = retornarProdutoNaLinha(i);
+        if(produto.id == id)
+        {
+            printf("\n%s", produto.id);
+            encontrou = 1;
+            return i;
+            //retorna a linha do produto no arquivo csv
+        }
+    }
+    if(encontrou == 0)
+    {
+        printf("nao tem produtos com esse id");
+    }
+}
+
+int buscarProdutoPorNome(char nome[51])
+{
+    int i;
+    PRODUTO produto;
+
+    int encontrou = 0;
+
+    for(i = 1; i <= quantidadeProdutosCSV(); i++)
+    {
+        produto = retornarProdutoNaLinha(i);
+        if(strcmp(produto.nome, nome) == 0)
+        {
+            printf("\n%s", produto.nome);
+            encontrou = 1;
+            return i;
+            //retorna a linha do produto no arquivo csv
+        }
+    }
+    if(encontrou == 0)
+    {
+        printf("nao tem clientes com esse cpf");
+    }
+}
+
 void mostrarProdutosComEstoqueAbaixoDe5()
 {
     int i;
