@@ -10,7 +10,6 @@
 
 int main()
 {
-
     int escolhaMenu;
     int opcao;
     int idProduto;
