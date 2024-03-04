@@ -155,7 +155,7 @@ int main()
                 break;
 
                 case 3:
-
+                    calcularEstoquePorSetor();
                 break;
 
                 case 4:
