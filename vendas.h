@@ -13,11 +13,11 @@ typedef struct VENDA
     /* CPF do cliente que realizou a compra */
     char CPF[14];
     /* Data de realização da compra*/
-    DATA dataCompra;
+    DATA data;
     /* Valor total da compra */
     float valorTotal;
     /* Quantidade de itens comprados, sem considerar a quantidade */
-    unsigned int quantidadeItens;
+    unsigned int quantidade;
 } VENDA;
 
 /**
@@ -33,6 +33,6 @@ int quantidadeVendasCSV();
  * @return Retorna a quantidade de vendas lidas
 */
 int lerVendasCSV(VENDA *lista );
-
+void gravarVendaCSV(VENDA venda);
 
 #endif

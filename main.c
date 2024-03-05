@@ -17,7 +17,8 @@ int main()
     int quantidadeProduto;
     CLIENTE novoCliente;
     PRODUTO novoProduto;
-    char cpf[15];
+    VENDA novaVenda;
+    char cpf[14];
     char nome[51];
 
     //o programa inteiro ta dividido nesse grande switch que serve como menu:
@@ -35,20 +36,27 @@ int main()
                 case 1:
 
                     printf("Digite o CPF do usuário:\n");
-                    scanf("%s", cpf);
+                    scanf("%s", &cpf);
                     if(buscarClientePorCPF(cpf) == 0){
                         interfaceCadastrarCliente(novoCliente);
                     }
                     printf("Digite código do produto ou 0 para encerrar venda:\n");
                     scanf("%d", &idProduto);
                     while(idProduto != 0){
+
                         indiceProduto = buscarProdutoPorID(idProduto);
                         if(indiceProduto == 0){
                             printf("id Inválido");
                         } else {
                             printf("Quantidade a ser comprada:\n");
                             scanf("%d", &quantidadeProduto);
+                            strcpy(novaVenda.CPF, cpf);
+                            novaVenda.quantidade = 0;
+                            novaVenda.valorTotal = 0;
+                            gravarVendaCSV(novaVenda);
                         }
+                        printf("Digite código do produto ou 0 para encerrar venda:\n");
+                        scanf("%d", &idProduto);
                     }
 
 

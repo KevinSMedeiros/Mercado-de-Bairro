@@ -73,13 +73,13 @@ int lerVendasCSV(VENDA *lista )
                         strcpy(lista[i].CPF, campos);
                         break;
                     case DATA_VENDA:
-                        StringToData(campos, &lista[i].dataCompra);
+                        StringToData(campos, &lista[i].data);
                         break;
                     case TOTAL_VENDA:
                         lista[i].valorTotal = atof(campos);
                         break;
                     case ITENS_VENDA:
-                        lista[i].quantidadeItens = atoi(campos);
+                        lista[i].quantidade = atoi(campos);
                         break;
                     default:
                         break;
@@ -98,5 +98,29 @@ int lerVendasCSV(VENDA *lista )
         printf("Erro - Arquivo %s não encontrado\n", nomeArquivo);
         return -1;
     }
+}
+void gravarVendaCSV(VENDA venda) {
+    char nomeArquivo[] = "Vendas.csv";
+    FILE *csv;
+    csv = fopen(nomeArquivo, "a");
 
+    if (csv == NULL) {
+        printf("Criando arquivo %s\n", nomeArquivo);
+        csv = fopen(nomeArquivo, "w");
+        fprintf(csv, "id;cpf;data;valorTotal;quantidadeProdutos\n");
+        fflush(csv);
+    }
+
+    fseek(csv, 0, SEEK_END); // arquivo ja existe, insere apenas o dado no final do arquivo
+
+    if (ftell(csv) == 0)
+    {
+        //ftell pega a posicao do cursor. se o seek_end deu na posicao 0, significa que o arquivo ta vazio, ai escreve o cabecalho
+        fprintf(csv, "id;cpf;data;valorTotal;quantidadeProdutos\n");
+    }
+
+    fprintf(csv, "%d;%s;%02d/%02d/%04d;%.2f;%d\n", venda.id, venda.CPF,  venda.data.dia, venda.data.mes, venda.data.ano,venda.valorTotal, venda.quantidade);
+
+    fflush(csv);
+    fclose(csv);
 }

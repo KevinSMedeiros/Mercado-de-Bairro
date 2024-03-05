@@ -103,3 +103,16 @@ int lerItensCompraCSV(ITENS_COMPRA *lista )
         return -1;
     }
 }
+void cadastrarItensCompra(int quantidade, int idProduto, char cpf[13]){
+    char nomeArquivo[] = "ItensCompra.csv";
+    FILE *csv;
+    csv = fopen(nomeArquivo, "a");
+
+    if (csv == NULL)
+    {
+        printf("Criando arquivo %s\n", nomeArquivo);
+        csv = fopen(nomeArquivo, "w");
+        fprintf(csv, "idVenda;cpf;idProduto;quantidade;precoUnitario;precoTotal\n");
+        fflush(csv);
+    }
+}

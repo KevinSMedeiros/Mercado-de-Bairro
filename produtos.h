@@ -25,7 +25,7 @@ void exibirProduto(PRODUTO p);
  * não exista, gera um novo arquivo com as colunas que são o cabeçalho
  * @param p Produto que será salvo no registro
 */
-int gravarProdutoCSV( PRODUTO p);
+void gravarProdutoCSV( PRODUTO p);
 
 void modificarProduto(); // funcao que consegue alterar informacoes numa linha no meio do arquivo
 

@@ -30,7 +30,7 @@ unsigned int obterProximoIdProduto()
     return proximoId;
 }
 
-int gravarProdutoCSV(PRODUTO p)
+void gravarProdutoCSV(PRODUTO p)
 {
     char nomeArquivo[] = "Produtos.csv";
     FILE *csv;
@@ -243,12 +243,11 @@ int buscarProdutoPorID(int id) {
 
     int encontrou = 0;
 
-    for (i = 1; i <= quantidadeProdutosCSV() &&
-                encontrou == 0; i++) // vai varrendo todas as linhas do arquivo csv ate achar algum que combina com o id
+    for (i = 1; i <= quantidadeProdutosCSV() && encontrou == 0; i++) // vai varrendo todas as linhas do arquivo csv ate achar algum que combina com o id
     {
         produto = retornarProdutoNaLinha(i);
+        printf("%s\n",produto.nome);
         if (produto.id == id) {
-            printf("\n%s", produto.id);
             encontrou = 1;
             return i;
             //retorna a linha do produto no arquivo csv

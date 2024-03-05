@@ -35,6 +35,7 @@ int quantidadeItensCompraCSV();
 */
 int lerItensCompraCSV(ITENS_COMPRA *lista );
 
+void registraItensCompra(int quantidade, int idProduto, char cpf[11]);
 
 
 #endif
