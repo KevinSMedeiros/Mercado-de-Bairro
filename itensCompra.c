@@ -103,7 +103,7 @@ int lerItensCompraCSV(ITENS_COMPRA *lista )
         return -1;
     }
 }
-void cadastrarItensCompra(int quantidade, int idProduto, char cpf[13]){
+void gravarItensCompraCSV(int idVenda, int quantidade, int idProduto, double precoUnitario, char cpf[14]){
     char nomeArquivo[] = "ItensCompra.csv";
     FILE *csv;
     csv = fopen(nomeArquivo, "a");
@@ -115,4 +115,16 @@ void cadastrarItensCompra(int quantidade, int idProduto, char cpf[13]){
         fprintf(csv, "idVenda;cpf;idProduto;quantidade;precoUnitario;precoTotal\n");
         fflush(csv);
     }
+    fseek(csv, 0, SEEK_END); // arquivo ja existe, insere apenas o dado no final do arquivo
+
+    if (ftell(csv) == 0)
+    {
+        //ftell pega a posicao do cursor. se o seek_end deu na posicao 0, significa que o arquivo ta vazio, ai escreve o cabecalho
+        fprintf(csv, "idVenda;cpf;idProduto;quantidade;precoUnitario;precoTotal\n");
+    }
+
+    fprintf(csv, "%d;%s;%d;%d;%.2f;%.2f\n",idVenda, cpf, idProduto, quantidade,precoUnitario, quantidade * precoUnitario);
+
+    fflush(csv);
+    fclose(csv);
 }

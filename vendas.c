@@ -99,6 +99,29 @@ int lerVendasCSV(VENDA *lista )
         return -1;
     }
 }
+unsigned int obterProximoIdVenda()
+{
+    FILE *arquivo;
+    arquivo = fopen("Vendas.csv", "r");
+
+    unsigned int ultimoId = 0; // tipo unsigned significa sem sinal
+    unsigned int proximoId = 1;
+    char linha[100];
+
+    if (arquivo != NULL)
+    {
+
+        while (fgets(linha, sizeof(linha), arquivo) != NULL)// ele vai lendo todas as linhas, aí para quando fica nulo
+        {
+            sscanf(linha, "%u", &ultimoId); //%u é o especificador de sem sinal
+            //sscanf procura por um valor de tipo unsigned na linha e salva em ultimoId
+        }
+        proximoId = ultimoId + 1;
+        fclose(arquivo);
+    }
+
+    return proximoId;
+}
 void gravarVendaCSV(VENDA venda) {
     char nomeArquivo[] = "Vendas.csv";
     FILE *csv;
@@ -118,9 +141,10 @@ void gravarVendaCSV(VENDA venda) {
         //ftell pega a posicao do cursor. se o seek_end deu na posicao 0, significa que o arquivo ta vazio, ai escreve o cabecalho
         fprintf(csv, "id;cpf;data;valorTotal;quantidadeProdutos\n");
     }
-
+    venda.data = hoje();
     fprintf(csv, "%d;%s;%02d/%02d/%04d;%.2f;%d\n", venda.id, venda.CPF,  venda.data.dia, venda.data.mes, venda.data.ano,venda.valorTotal, venda.quantidade);
 
     fflush(csv);
     fclose(csv);
 }
+

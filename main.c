@@ -40,29 +40,27 @@ int main()
                     if(buscarClientePorCPF(cpf) == 0){
                         interfaceCadastrarCliente(novoCliente);
                     }
-                    printf("Digite código do produto ou 0 para encerrar venda:\n");
-                    scanf("%d", &idProduto);
-                    while(idProduto != 0){
-
+                    strcpy(novaVenda.CPF, cpf);
+                    novaVenda.quantidade = 0;
+                    novaVenda.valorTotal = 0;
+                    novaVenda.id = obterProximoIdVenda();
+                    gravarVendaCSV(novaVenda);
+                    do{
+                        printf("Digite codigo do produto ou 0 para encerrar venda:\n");
+                        scanf("%d", &idProduto);
+                        if(idProduto == 0){
+                            break;
+                        }
                         indiceProduto = buscarProdutoPorID(idProduto);
-                        if(indiceProduto == 0){
-                            printf("id Inválido");
-                        } else {
+                        if( indiceProduto!= 0)
+                        {
+
                             printf("Quantidade a ser comprada:\n");
                             scanf("%d", &quantidadeProduto);
-                            strcpy(novaVenda.CPF, cpf);
-                            novaVenda.quantidade = 0;
-                            novaVenda.valorTotal = 0;
-                            gravarVendaCSV(novaVenda);
+                            gravarItensCompraCSV(novaVenda.id,quantidadeProduto,idProduto, retornarProdutoNaLinha(indiceProduto).preco, cpf);
                         }
-                        printf("Digite código do produto ou 0 para encerrar venda:\n");
-                        scanf("%d", &idProduto);
-                    }
 
-
-
-
-
+                    }while(true);
 
                 break;
 
