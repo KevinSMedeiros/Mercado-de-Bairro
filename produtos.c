@@ -59,7 +59,7 @@ void gravarProdutoCSV(PRODUTO p)
     fclose(csv);
 }
 
-void modificarProduto()
+void interfaceModificarProduto()
 {
     int escolhaMenu;
     char nome[51];
@@ -159,7 +159,10 @@ void modificarProduto()
             scanf("%d", &produto.estoque);
             break;
     }
-
+    modificarProduto(produto,indiceProduto);
+    printf("produto modificado\n");
+}
+void modificarProduto(PRODUTO produto, int indice){
     char nomeArquivo[] = "Produtos.csv";
     FILE *csv, *temp;
     csv = fopen(nomeArquivo, "r");
@@ -173,7 +176,7 @@ void modificarProduto()
 
     while (fgets(linha, sizeof(linha), csv) != NULL)
     { //os novos dados do produto sao jogados no arquivo temporario
-        if (contador == indiceProduto - 1) // -1 porque o indice comeca direto no 1, nao no 0
+        if (contador == indice - 1) // -1 porque o indice comeca direto no 1, nao no 0
         {
             fprintf(temp, "%d;%s;%s;%.2f;%02d/%02d/%04d;%d\n", produto.id, produto.setor, produto.nome, produto.preco, produto.dataValidade.dia, produto.dataValidade.mes, produto.dataValidade.ano, produto.estoque);
         }
@@ -189,10 +192,7 @@ void modificarProduto()
 
     remove(nomeArquivo);
     rename("temp.csv", nomeArquivo);// arquivo original é substituído pelo temporário
-
-    printf("produto modificado\n");
 }
-
 void exibirProduto(PRODUTO p)
 {
     printf("\n######################################\n");

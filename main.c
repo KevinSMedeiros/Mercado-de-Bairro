@@ -14,7 +14,7 @@ int main()
     int opcao;
     int idProduto;
     int indiceProduto;
-    int quantidadeProduto;
+    unsigned int quantidadeProduto;
     CLIENTE novoCliente;
     PRODUTO novoProduto;
     VENDA novaVenda;
@@ -54,10 +54,23 @@ int main()
                         indiceProduto = buscarProdutoPorID(idProduto);
                         if( indiceProduto!= 0)
                         {
-
+                            novoProduto= retornarProdutoNaLinha(indiceProduto);
+                            exibirProduto(novoProduto);
                             printf("Quantidade a ser comprada:\n");
                             scanf("%d", &quantidadeProduto);
-                            gravarItensCompraCSV(novaVenda.id,quantidadeProduto,idProduto, retornarProdutoNaLinha(indiceProduto).preco, cpf);
+                            if(quantidadeProduto <= novoProduto.estoque){
+                                gravarItensCompraCSV(novaVenda.id,quantidadeProduto,idProduto, novoProduto.preco, cpf);
+                                novoProduto.estoque -= quantidadeProduto;
+                                modificarProduto(novoProduto,indiceProduto);
+                                novaVenda.valorTotal += quantidadeProduto * novoProduto.preco;
+                                novaVenda.data = hoje();
+                                novaVenda.quantidade +=1;
+                                printf("id %d\n",novaVenda.id);
+                                modificarVendas(novaVenda);
+                            } else{
+                                printf("Não há quantidade disponível do produto\n");
+                            }
+
                         }
 
                     }while(true);
@@ -168,7 +181,7 @@ int main()
                 break;
 
                 case 2:
-                    modificarProduto();
+                    interfaceModificarProduto();
                 break;
 
                 case 3:

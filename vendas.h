@@ -34,6 +34,9 @@ int quantidadeVendasCSV();
 */
 int lerVendasCSV(VENDA *lista );
 void gravarVendaCSV(VENDA venda);
+int buscarVendaPorId(unsigned int id);
+VENDA retornarVendaNaLinha(int i);
 unsigned int obterProximoIdVenda();
+void modificarVendas(VENDA venda);
 
 #endif

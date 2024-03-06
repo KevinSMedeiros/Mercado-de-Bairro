@@ -29,6 +29,7 @@ int quantidadeVendasCSV()
     else
     {
         // arquivo não existe
+        printf("Vendas.csv n existe");
         return 0;
     }
 }
@@ -122,6 +123,33 @@ unsigned int obterProximoIdVenda()
 
     return proximoId;
 }
+VENDA retornarVendaNaLinha(int i){
+    VENDA venda;
+    char nomeArquivo[] = "Vendas.csv";
+    FILE *csv;
+    csv = fopen(nomeArquivo, "r");
+
+    char cabecalho[100];
+    fgets(cabecalho, sizeof(cabecalho), csv);  //faz pular o cabecalho
+
+    int indiceAtual = 1;
+
+    //vai passando de linha em linha ate chegar na linha que interessa, ai retorna um valor de tipo PRODUTO
+    while (7 == fscanf(csv, "%d;%[^;];%d/%d/%d;%f;%d\n", &venda.id, venda.CPF, &venda.data.dia,
+                       &venda.data.mes, &venda.data.ano, &venda.valorTotal, &venda.quantidade))
+    {
+        if (i == indiceAtual)
+        {
+            fclose(csv);
+            return venda;
+        }
+        indiceAtual = indiceAtual + 1;
+
+    }
+
+    exit(1);
+}
+
 void gravarVendaCSV(VENDA venda) {
     char nomeArquivo[] = "Vendas.csv";
     FILE *csv;
@@ -146,5 +174,58 @@ void gravarVendaCSV(VENDA venda) {
 
     fflush(csv);
     fclose(csv);
+}
+ int buscarVendaPorId(unsigned int id){
+    int i;
+    VENDA venda;
+
+    int encontrou = 0;
+
+    for (i = 1; i <= quantidadeVendasCSV() && encontrou == 0; i++) // vai varrendo todas as linhas do arquivo csv ate achar algum que combina com o id
+    {
+        venda = retornarVendaNaLinha(i);
+        if (venda.id == id) {
+            encontrou = 1;
+            printf("indice: %d\n",i);
+            return i;
+            //retorna a linha do venda no arquivo csv
+        }
+    }
+
+    printf("nao existem vendas com esse id\n");
+    return 0;
+}
+void modificarVendas(VENDA venda){
+    char nomeArquivo[] = "Vendas.csv";
+    FILE *csv, *temp;
+    csv = fopen(nomeArquivo, "r");
+    temp = fopen("temp.csv", "w"); // arquivo temporario
+    int indice = buscarVendaPorId(venda.id);
+    char linha[1000];
+    int contador = 0;
+
+    fgets(linha, sizeof(linha), csv);
+    fprintf(temp, "%s", linha); // pega a linha do cabeçalho do arquivo original e joga no arquivo temporario
+    printf("entrou\n");
+    while (fgets(linha, sizeof(linha), csv) != NULL)
+    { //os novos dados do produto sao jogados no arquivo temporario
+        if (contador == indice - 1 )
+        {
+            printf("entrou\n");
+            fprintf(temp, "%d;%s;%02d/%02d/%04d;%.2f;%d\n", venda.id, venda.CPF,  venda.data.dia, venda.data.mes, venda.data.ano,venda.valorTotal, venda.quantidade);
+            printf("%d;%s;%02d/%02d/%04d;%.2f;%d\n", venda.id, venda.CPF,  venda.data.dia, venda.data.mes, venda.data.ano,venda.valorTotal, venda.quantidade);
+        }
+        else
+        {
+            fprintf(temp, "%s", linha);
+        }
+        contador = contador + 1;
+    }
+    printf("contador: %d",contador);
+    fclose(csv);
+    fclose(temp);
+
+    remove(nomeArquivo);
+    rename("temp.csv", nomeArquivo);// arquivo original é substituído pelo temporário
 }
 

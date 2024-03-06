@@ -27,8 +27,8 @@ void exibirProduto(PRODUTO p);
 */
 void gravarProdutoCSV( PRODUTO p);
 
-void modificarProduto(); // funcao que consegue alterar informacoes numa linha no meio do arquivo
-
+void interfaceModificarProduto(); // funcao que consegue alterar informacoes numa linha no meio do arquivo
+void modificarProduto(PRODUTO produto, int indice);
 int buscarProdutoPorID(int id); //retorna o indice do produto no arquivo csv.
 //pode parecer meio redundante (pq ele retorna com o mesmo parametro de entrada), mas
 //essa função é importante pq precisa ver se o id existe.
