@@ -65,7 +65,6 @@ int main()
                                 int indiceCliente = buscarClientePorCPF(cpf);
                                 novoCliente = retornarClienteNaLinha(indiceCliente);
                                 novoCliente.pontos += novoProduto.preco *quantidadeProduto;
-                                printf("%d",novoCliente.pontos);
                                 modificarCliente(novoCliente, indiceCliente);
                                 novaVenda.valorTotal += quantidadeProduto * novoProduto.preco;
                                 novaVenda.data = hoje();

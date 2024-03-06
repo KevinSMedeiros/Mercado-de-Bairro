@@ -249,7 +249,6 @@ int buscarClientePorCPF(char cpf[15])
         cliente = retornarClienteNaLinha(i); // vai varrendo todas as linhas do arquivo csv ate achar algum que combina com o cpf
         if(strcmp(cliente.CPF, cpf) == 0) //strcmp serve pra comparar string, o valor 0 significa que sao iguais
         {
-            printf("\n%s", cliente.nome);
             encontrou = 1;
             return i;
             //retorna o indice do cliente do arquivo
