@@ -62,10 +62,14 @@ int main()
                                 gravarItensCompraCSV(novaVenda.id,quantidadeProduto,idProduto, novoProduto.preco, cpf);
                                 novoProduto.estoque -= quantidadeProduto;
                                 modificarProduto(novoProduto,indiceProduto);
+                                int indiceCliente = buscarClientePorCPF(cpf);
+                                novoCliente = retornarClienteNaLinha(indiceCliente);
+                                novoCliente.pontos += novoProduto.preco *quantidadeProduto;
+                                printf("%d",novoCliente.pontos);
+                                modificarCliente(novoCliente, indiceCliente);
                                 novaVenda.valorTotal += quantidadeProduto * novoProduto.preco;
                                 novaVenda.data = hoje();
                                 novaVenda.quantidade +=1;
-                                printf("id %d\n",novaVenda.id);
                                 modificarVendas(novaVenda);
                             } else{
                                 printf("Não há quantidade disponível do produto\n");
@@ -99,7 +103,7 @@ int main()
                 break;
 
                 case 2:
-                    modificarCliente();
+                    interfaceModificarCliente();
                 break;
 
                 case 3:

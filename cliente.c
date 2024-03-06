@@ -78,7 +78,7 @@ void interfaceCadastrarCliente(CLIENTE novoCliente){
     exibirCliente(novoCliente);
 }
 
-void modificarCliente()
+void interfaceModificarCliente()
 {
     int escolhaMenu;
     char cpf[15];
@@ -161,6 +161,9 @@ void modificarCliente()
         break;
     }
 
+    modificarCliente(cliente, indiceCliente);
+}
+void modificarCliente(CLIENTE cliente, int indiceCliente){
     char nomeArquivo[] = "Clientes.csv";
     FILE *csv, *temp;
     csv = fopen(nomeArquivo, "r");

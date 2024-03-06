@@ -47,7 +47,7 @@ void mostrarNomesComMaisDeMilPontos(); // gera uma lista de nomes dos clientes c
 
 int quantosClientesEntre18e25(); // calcula o numero de clientes entre 18 e 25 anos.
 
-void modificarCliente(); // funcao que consegue alterar informacoes numa linha no meio do arquivo
-
+void modificarCliente(CLIENTE c, int indice); // funcao que consegue alterar informacoes numa linha no meio do arquivo
+void interfaceModificarCliente();
 
 #endif
