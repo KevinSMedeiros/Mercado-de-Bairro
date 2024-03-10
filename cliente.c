@@ -114,7 +114,6 @@ void interfaceModificarCliente()
     printf("4. endereco\n");
     printf("5. cidade\n");
     printf("6. estado\n");
-    printf("7. pontos\n");
     printf("9. sair\n");
 
     int opcao;
@@ -150,11 +149,6 @@ void interfaceModificarCliente()
         case 6:
             printf("novo estado: ");
             scanf("%s", cliente.estado);
-        break;
-
-        case 7:
-            printf("pontuacao nova: ");
-            scanf("%d", &cliente.pontos);
         break;
 
         case 9:

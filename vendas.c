@@ -3,6 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 #include "vendas.h"
+#include "cliente.h"
 
 /**
  * Verifica a quantidade de vendas registradas
@@ -227,5 +228,52 @@ void modificarVendas(VENDA venda){
 
     remove(nomeArquivo);
     rename("temp.csv", nomeArquivo);// arquivo original é substituído pelo temporário
+}
+void buscaVendas(){
+    int escolhaMenu;
+    char cpf[15];
+    char nome[51];
+    CLIENTE cliente;
+    int indiceCliente;
+
+    printf("buscar vendas de qual cliente? pesquisar por:\n1. CPF\n2. Nome\n");
+    scanf("%d", &escolhaMenu);
+    if (escolhaMenu == 1)
+    {
+        printf("digite o CPF: ");
+        scanf("%s", cpf);
+    } else if (escolhaMenu == 2)
+    {
+        printf("digite o nome: ");
+        scanf("%s", nome);
+        indiceCliente = buscarClientePorNome(nome);
+        cliente = retornarClienteNaLinha(indiceCliente);
+        strcpy(cpf, cliente.CPF);
+        printf("%s",cpf);
+    }
+    VENDA venda;
+    char nomeArquivo[] = "Vendas.csv";
+    FILE *csv;
+    csv = fopen(nomeArquivo, "r");
+
+    char cabecalho[100];
+    fgets(cabecalho, sizeof(cabecalho), csv);  //faz pular o cabecalho
+
+    int indiceAtual = 1;
+
+    //vai passando de linha em linha ate chegar na linha que interessa, ai retorna um valor de tipo PRODUTO
+    while (7 == fscanf(csv, "%d;%[^;];%d/%d/%d;%f;%d\n", &venda.id, venda.CPF, &venda.data.dia,
+                       &venda.data.mes, &venda.data.ano, &venda.valorTotal, &venda.quantidade))
+    {
+        if (strcmp(cpf,venda.CPF)==0)
+        {
+            printf("%d/%d/%d: %.02f, %d produto(s)\n"
+                   ,venda.data.dia,venda.data.mes,venda.data.ano,venda.valorTotal,venda.quantidade);
+        }
+        indiceAtual = indiceAtual + 1;
+
+    }
+
+    exit(1);
 }
 

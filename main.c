@@ -81,7 +81,7 @@ int main()
                 break;
 
                 case 2:
-
+                    buscaVendas();
                 break;
 
                 case 9:

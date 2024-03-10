@@ -11,7 +11,7 @@ typedef struct VENDA
     /* Identificação da venda */
     unsigned int id;
     /* CPF do cliente que realizou a compra */
-    char CPF[14];
+    char CPF[15];
     /* Data de realização da compra*/
     DATA data;
     /* Valor total da compra */
@@ -38,5 +38,6 @@ int buscarVendaPorId(unsigned int id);
 VENDA retornarVendaNaLinha(int i);
 unsigned int obterProximoIdVenda();
 void modificarVendas(VENDA venda);
+void buscaVendas();
 
 #endif
