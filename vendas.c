@@ -148,7 +148,7 @@ VENDA retornarVendaNaLinha(int i){
 
     }
 
-    exit(1);
+    //exit(1);
 }
 
 void gravarVendaCSV(VENDA venda) {
@@ -235,7 +235,6 @@ void buscaVendas(){
     char nome[51];
     CLIENTE cliente;
     int indiceCliente;
-
     printf("buscar vendas de qual cliente? pesquisar por:\n1. CPF\n2. Nome\n");
     scanf("%d", &escolhaMenu);
     if (escolhaMenu == 1)
@@ -249,7 +248,7 @@ void buscaVendas(){
         indiceCliente = buscarClientePorNome(nome);
         cliente = retornarClienteNaLinha(indiceCliente);
         strcpy(cpf, cliente.CPF);
-        printf("%s",cpf);
+
     }
     VENDA venda;
     char nomeArquivo[] = "Vendas.csv";
@@ -274,6 +273,6 @@ void buscaVendas(){
 
     }
 
-    exit(1);
+    //exit(1);
 }
 

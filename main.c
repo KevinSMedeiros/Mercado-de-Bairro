@@ -11,6 +11,7 @@
 int main()
 {
     int escolhaMenu;
+    int escolhaMenuInicial;
     int opcao;
     int idProduto;
     int indiceProduto;
@@ -22,10 +23,10 @@ int main()
     char nome[51];
 
     //o programa inteiro ta dividido nesse grande switch que serve como menu:
-
+    do{
     printf("\n###### MENU DO MERCADINHO ######\n\n1. Venda\n2. Clientes\n3. Produtos\n\n9. Sair\n");
-    scanf("%d", &escolhaMenu);
-    switch (escolhaMenu)
+    scanf("%d", &escolhaMenuInicial);
+    switch (escolhaMenuInicial)
     {
         case 1:
             printf("\n###### MENU DE VENDAS ######\n\n1. Nova venda\n2. Listar venda do clientes\n\n9. Sair\n");
@@ -58,7 +59,7 @@ int main()
                             exibirProduto(novoProduto);
                             printf("Quantidade a ser comprada:\n");
                             scanf("%d", &quantidadeProduto);
-                            if(quantidadeProduto <= novoProduto.estoque){
+                            if(quantidadeProduto <= novoProduto.estoque && quantidadeProduto != 0){
                                 gravarItensCompraCSV(novaVenda.id,quantidadeProduto,idProduto, novoProduto.preco, cpf);
                                 novoProduto.estoque -= quantidadeProduto;
                                 modificarProduto(novoProduto,indiceProduto);
@@ -208,7 +209,9 @@ int main()
         case 9:
             printf("\nPrograma finalizado.\n");
         break;
-    }
+        default:
+            printf("\nOpcao invalida\n");
+    }} while (escolhaMenuInicial != 9);
 
 return 0;
 }
