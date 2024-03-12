@@ -36,8 +36,9 @@ int main()
             {
                 case 1:
 
+                    char cpf[15];
                     printf("Digite o CPF do usuário:\n");
-                    scanf("%s", &cpf);
+                    scanf("%14s", cpf); // limitando pra 14 pra nao passar do valor maximo
                     if(buscarClientePorCPF(cpf) == 0){
                         interfaceCadastrarCliente(novoCliente);
                     }
@@ -80,6 +81,17 @@ int main()
                     }while(true);
 
                 break;
+
+                case 2:
+                    buscaVendas();
+                break;
+
+                case 9:
+                    printf("\nprograma finalizado.\n");
+                break;
+            }
+
+        break;
 
                 case 2:
                     buscaVendas();
