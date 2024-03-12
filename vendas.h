@@ -34,10 +34,10 @@ int quantidadeVendasCSV();
 */
 int lerVendasCSV(VENDA *lista );
 void gravarVendaCSV(VENDA venda);
-int buscarVendaPorId(unsigned int id);
-VENDA retornarVendaNaLinha(int i);
-unsigned int obterProximoIdVenda();
-void modificarVendas(VENDA venda);
-void buscaVendas();
+int buscarVendaPorId(unsigned int id); //retorna o indice da venda no arquivo csv.
+VENDA retornarVendaNaLinha(int i); // retorna com um valor de tipo VENDA relacionado as informacoes da linha solicitada
+unsigned int obterProximoIdVenda(); // veri
+void modificarVendas(VENDA venda); // funcao que consegue alterar informacoes numa linha no meio do arquivo
+void buscaVendas(); // permite escolher se quer buscar por nome ou cpf
 
 #endif
