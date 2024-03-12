@@ -1,0 +1,9 @@
+id;setor;nome;preço;data de validade;estoque
+1;Higiene;sabonete;3.00;06/10/2025;990
+2;Açougue;picanha;50.32;10/10/2026;10
+3;Limpeza;sabonete em po;6.00;12/01/2026;91
+4;Frios;Queijo mussarela de 300g;30.00;12/03/2024;3
+5;Bebidas;Guaraná;5.00;08/06/2026;497
+6;Padaria;Pão de forma;10.00;29/03/2024;100
+7;Bebidas;guarana;7.00;12/12/0000;3
+8;Frios;sorvete;25.00;12/05/2024;3
