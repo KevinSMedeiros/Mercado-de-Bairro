@@ -135,7 +135,7 @@ VENDA retornarVendaNaLinha(int i){
 
     int indiceAtual = 1;
 
-    //vai passando de linha em linha ate chegar na linha que interessa, ai retorna um valor de tipo PRODUTO
+    //vai passando de linha em linha ate chegar na linha que interessa, ai retorna um valor de tipo VENDA
     while (7 == fscanf(csv, "%d;%[^;];%d/%d/%d;%f;%d\n", &venda.id, venda.CPF, &venda.data.dia,
                        &venda.data.mes, &venda.data.ano, &venda.valorTotal, &venda.quantidade))
     {
@@ -176,7 +176,7 @@ void gravarVendaCSV(VENDA venda) {
     fflush(csv);
     fclose(csv);
 }
- int buscarVendaPorId(unsigned int id){
+ int buscarVendaPorId(unsigned int id){ 
     int i;
     VENDA venda;
 
@@ -236,7 +236,7 @@ void buscaVendas(){
     CLIENTE cliente;
     int indiceCliente;
     printf("buscar vendas de qual cliente? pesquisar por:\n1. CPF\n2. Nome\n");
-    scanf("%d", &escolhaMenu);
+    scanf("%d", &escolhaMenu); // opção de buscar por nome ou cpf
     if (escolhaMenu == 1)
     {
         printf("digite o CPF: ");
@@ -260,7 +260,7 @@ void buscaVendas(){
 
     int indiceAtual = 1;
 
-    //vai passando de linha em linha ate chegar na linha que interessa, ai retorna um valor de tipo PRODUTO
+    //vai passando de linha em linha ate chegar na linha que interessa, ai retorna um valor de tipo VENDA
     while (7 == fscanf(csv, "%d;%[^;];%d/%d/%d;%f;%d\n", &venda.id, venda.CPF, &venda.data.dia,
                        &venda.data.mes, &venda.data.ano, &venda.valorTotal, &venda.quantidade))
     {
